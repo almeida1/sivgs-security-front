@@ -16,7 +16,7 @@ function RegistrationForm() {
     };
 
     try {
-      const response = await fetch("http://localhost:8081/login/cadastro", {
+      const response = await fetch("http://localhost:8080/login/cadastro", {
         method: "POST",
           headers: {
           "Content-Type": "application/json"
