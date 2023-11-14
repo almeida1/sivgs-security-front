@@ -18,7 +18,7 @@ function LoginForm() {
       const response = await fetch('http://localhost:8080/login/autenticacao', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(data),
       });
@@ -27,7 +27,7 @@ function LoginForm() {
         const result = await response.json();
         setToken(result.token);
         // Aqui você pode armazenar o token em localStorage ou sessionStorage:
-        // localStorage.setItem('token', result.token);
+        localStorage.setItem('token', result.token);
         // sessionStorage.setItem('token', result.token);
       } else {
         // Handle authentication error
