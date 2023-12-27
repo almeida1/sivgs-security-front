@@ -4,7 +4,7 @@ function LoginForm() {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [token, setToken] = useState('');
-  const [message, setMessage] = useState("");
+  
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -35,7 +35,7 @@ function LoginForm() {
       }
     } catch (error) {
       console.error('Erro na solicitação:', error);
-      setMessage(`Erro na solicitação: ${error.message}`);
+      
     }
   };
 

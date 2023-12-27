@@ -17,20 +17,23 @@ const FormularioProdutos = () => {
       quantidadeNoEstoque: parseInt(quantidadeNoEstoque, 10)
     };
 
-    const token = localStorage.getItem('token'); // Obter o token do localStorage
-    //const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzaWd2cyIsInN1YiI6Impvc2UiLCJleHAiOjE2OTk5Mjc2Njl9.oVBYfaW4UIHWMxxg6kA0lBQDAFWuVBVx9An2L3MzAro"
+    const token = JSON.parse(localStorage.getItem('token')); // Obter o token do localStorage
+    console.log('token obtido do localstorage:', token)
 
     try {
+      const headers = {
+        'Content-Type': 'application/json',
+        // Adicione o token ao cabeçalho de autorização se estiver presente
+        ...(token && { Authorization : `Bearer ${token}` }),
+      };
+      console.log('Headers enviados para o backend:', headers);
       const response = await fetch('http://localhost:8080/api/v1/produtos', {
         method: 'POST',
-        mode:  'no-cors',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `${token}`
-        },
+        mode:'no-cors',
+        headers: headers,
         body: JSON.stringify(produto)
       });
-
+      
       if (response.ok) {
         setMensagem('Produto cadastrado com sucesso!');
       } else {
